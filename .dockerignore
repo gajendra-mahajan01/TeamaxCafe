@@ -1,3 +1,18 @@
-target
-.git
-.gitignore
+# Maven
+target/
+build/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Compiled files
+*.class
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
