@@ -4,20 +4,25 @@ import java.sql.*;
 
 public class DBConnection {
 
-    // Method jo Connection return kare
     public static Connection getConnection() throws Exception {
         Connection conn = null;
         try {
-            // 1️⃣ Load MySQL Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // 2️⃣ Connect to Database
-            conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/cafe_qr", "root", "G@jju2003"); // apna DB username/password
+            String host = System.getenv("MYSQLHOST");
+            String port = System.getenv("MYSQLPORT");
+            String database = System.getenv("MYSQLDATABASE");
+            String user = System.getenv("MYSQLUSER");
+            String password = System.getenv("MYSQLPASSWORD");
+
+            String url = "jdbc:mysql://" + host + ":" + port + "/" + database;
+
+            conn = DriverManager.getConnection(url, user, password);
+
         } catch (Exception e) {
-            throw e; // agar error aaye to propagate kare
+            e.printStackTrace();
+            throw e;
         }
         return conn;
     }
 }
-
